@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang = "en">
+
+<head>
+  <link rel = "stylesheet" type = "text/css" href = "{% static 'iotSite/styles.css' %}" />
+  <meta charset = "utf-8">
+</head>
+
+<body>
+  <h1>Sensors</h1>
+  <span></span>
+  <h5>See below for a list of the currently available sensors</h5>
+  <span></span>
+  {% if sensors_list %}
+    <ul>
+    {% for sensor in sensors_list %}
+      <li><a href = "{% url 'sensorsHome:detail_'|add:sensor.sensor_type sensor.sensor_name %}/">{{ sensor.sensor_name}}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No sensors are available.</p>
+  {% endif %}
+</body>
+
+</html>

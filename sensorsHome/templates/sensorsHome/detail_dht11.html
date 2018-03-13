@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<html lang = "en">
+
+  {% load tz %}
+  {% localtime on %}
+
+  <head>
+    <link rel = "stylesheet" type = "text/css" href = "{% static 'iotSite/styles.css' %}" />
+    <meta charset = "utf-8">
+  </head>
+
+
+  <header>
+    <h1>{{ sensor.sensor_name }}</h1>
+    <h4>{{ sensor.sensor_type }}</h4>
+  </header>
+
+  <body>
+    <div>
+      <h4>Meta Data</h4>
+      <p>{{ sensor.date_created }}</p>
+      <p>{{ sensor.ip_address }}</p>
+      <p>{{ sensor.sensor_text }}</p>
+    </div>
+    <span></span>
+    <div>
+      <h4>Aggregate Data</h4>
+      <p>Number of Readings: {{ readings_count }}</p>
+      <p>Averagure Temperature: {{ aggregate_dict.temperature__avg }}</p>
+      <p>High Temperature: {{ aggregate_dict.temperature__max }}</p>
+      <p>Low Temperature: {{ aggregate_dict.temperature__min }}</p>
+      <p>Average Humidity: {{ aggregate_dict.humidity__avg }}</p>
+      <p>Max Humidity: {{ aggregate_dict.humidity__max }}</p>
+      <p>Low Humidity: {{ aggregate_dict.humidity__min }}</p>
+    <div>
+      <ol>
+        <lh>Readings from the last hour</lh>
+        {% for reading in readings_list %}
+        <p>{{ reading }}</p>
+        {% endfor %}
+      </ol>
+    </div>
+
+{% endlocaltime %}
+
+</html>

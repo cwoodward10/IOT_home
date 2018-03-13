@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang = "en">
+  <h1>Projects</h1>
+  <span></span>
+  <h5>See below for a list of the currently available projects</h5>
+  <span></span>
+  {% if projects_list %}
+    <ul>
+    {% for sensor in projects_list %}
+      <li><a href = "{% url 'projectsHome:project_sleep-study' project.project_name %}/">{{ project.project_name}}</a></li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>No projects are available.</p>
+  {% endif %}
+</html>
